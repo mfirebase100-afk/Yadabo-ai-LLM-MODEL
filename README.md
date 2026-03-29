@@ -953,3 +953,196 @@ python scripts/train.py --fp16
 - [Google Cloud GPU Documentation](https://cloud.google.com/compute/docs/gpus)
 - [PyTorch on GCP](https://cloud.google.com/deep-learning-vm/docs/pytorch_start_instance)
 - [Cloud Storage Documentation](https://cloud.google.com/storage/docs)
+# UCL - UserCloudLinux
+
+```
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║   ██████╗ ██╗███╗   ██╗██╗   ██╗    ███████╗██╗███╗   ███╗███████╗║
+║   ██╔══██╗██║████╗  ██║██║   ██║    ██╔════╝██║████╗ ████║██╔════╝║
+║   ██████╔╝██║██╔██╗ ██║██║   ██║    ███████╗██║██╔████╔██║█████╗  ║
+║   ██╔═══╝ ██║██║╚██╗██║██║   ██║    ╚════██║██║██║╚██╔╝██║██╔══╝  ║
+║   ██║     ██║██║ ╚████║╚██████╔╝    ███████║██║██║ ╚═╝ ██║███████╗║
+║   ╚═╝     ╚═╝╚═╝  ╚═══╝ ╚═════╝     ╚══════╝╚═╝╚═╝     ╚═╝╚══════╝║
+║                                                                  ║
+║   UserCloudLinux - AI-Powered Linux Environment                  ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+```
+
+## Overview
+
+UCL (UserCloudLinux) is a Python-based Linux environment simulation designed specifically for AI agents. It provides a complete Alpine Linux-like environment with package management, file operations, and development tools.
+
+## Features
+
+- 🐧 **Alpine Linux Environment** - Simulated Alpine Linux system
+- 📦 **APK Package Manager** - Install and manage packages
+- 🛠️ **Development Tools** - Python, Node.js, Git, Docker support
+- 🌐 **Network Tools** - curl, wget for fetching URLs
+- 📁 **File Operations** - Full file system operations
+- 🤖 **AI-Ready** - Designed for AI agents to execute commands
+
+## Installation
+
+```bash
+cd /workspace/ucl
+python3 run.py
+```
+
+## Quick Start
+
+### Interactive Mode
+```bash
+python3 run.py
+```
+
+### Single Command Mode
+```bash
+python3 run.py ls -la
+python3 run.py apk search python
+python3 run.py whoami
+```
+
+## Available Commands
+
+### File Operations
+| Command | Description |
+|---------|-------------|
+| `ls [-la]` | List directory contents |
+| `cd <dir>` | Change directory |
+| `pwd` | Print working directory |
+| `cat <file>` | Display file contents |
+| `touch <file>` | Create empty file |
+| `mkdir <dir>` | Create directory |
+| `rm <file>` | Remove file/directory |
+| `cp <src> <dst>` | Copy file |
+| `mv <src> <dst>` | Move/rename file |
+| `chmod <perm>` | Change permissions |
+| `find` | Search for files |
+| `grep` | Search text in files |
+
+### Package Management (APK)
+| Command | Description |
+|---------|-------------|
+| `apk search <pkg>` | Search packages |
+| `apk info <pkg>` | Show package info |
+| `apk add <pkg>` | Install package |
+| `apk del <pkg>` | Delete package |
+| `apk list` | List installed packages |
+| `apk update` | Update package index |
+| `apk upgrade` | Upgrade all packages |
+
+### Development Tools
+| Command | Description |
+|---------|-------------|
+| `python <script>` | Run Python script |
+| `pip install <pkg>` | Install Python package |
+| `npm install <pkg>` | Install Node.js package |
+| `git <cmd>` | Git version control |
+| `docker <cmd>` | Docker container management |
+
+### System Info
+| Command | Description |
+|---------|-------------|
+| `info` | Show UCL environment info |
+| `whoami` | Show current user |
+| `uname [-a]` | System information |
+| `date` | Show current date/time |
+| `history` | Show command history |
+| `clear` | Clear screen |
+| `help` | Show help |
+| `exit` | Exit UCL |
+
+## Available Packages
+
+```
+bash, python3, python3-pip, git, curl, wget, nano, vim,
+htop, tree, jq, zip, unzip, tar, gzip, openssh, nginx,
+redis, postgresql, sqlite, nodejs, npm, rustc, cargo,
+go, docker, make, gcc, g++, cmake, perl, ruby
+```
+
+## Example Usage
+
+### 1. Navigate and Create Files
+```bash
+ucl:~$ pwd
+/workspace/ucl/home
+ucl:~$ mkdir myproject
+ucl:~$ cd myproject
+ucl:~/myproject$ touch README.md
+```
+
+### 2. Package Management
+```bash
+ucl:~$ apk search python
+python3-3.11.5-r0
+python3-pip-23.2.1-r0
+ucl:~$ apk info python3
+Package: python3
+Version: 3.11.5-r0
+Description: Python 3 programming language
+```
+
+### 3. Development
+```bash
+ucl:~$ python hello.py
+Hello, World!
+ucl:~$ pip install numpy
+Installing numpy...
+Successfully installed!
+```
+
+## Environment Variables
+
+UCL sets the following environment variables:
+- `PATH`: System paths
+- `HOME`: User home directory
+- `USER`: Current user (ai)
+- `SHELL`: Default shell (/bin/ash)
+- `HOSTNAME`: System hostname (ucl-alpine)
+- `APK_ARCH`: Package architecture
+- `UCL_VERSION`: UCL version
+
+## Architecture
+
+```
+ucl/
+├── core.py        # Main UCL environment implementation
+├── run.py         # Entry point / launcher
+├── README.md      # This file
+├── bin/           # Executable binaries (simulated)
+├── lib/           # Libraries
+├── etc/           # Configuration files
+├── tools/         # Additional tools
+└── home/          # User home directory
+```
+
+## For AI Agents
+
+UCL is designed to be used by AI agents. Here's how to integrate:
+
+```python
+from ucl.core import UCLEnvironment
+
+# Create environment
+env = UCLEnvironment()
+
+# Execute commands
+result = env.exec_command("ls -la")
+print(result["output"])
+
+# Get environment info
+info = env.get_info()
+print(f"Version: {info['version']}")
+```
+
+## License
+
+MIT License - Free to use and modify
+
+## Author
+
+UCL - UserCloudLinux
+AI-Powered Linux Environment
